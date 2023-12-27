@@ -1,6 +1,8 @@
-"use client"
+'use client';
 
-import styled from 'styled-components'
+import styled from 'styled-components';
+import 'animate.css';
+
 
 
 export const FormBox = styled.div `
@@ -13,7 +15,7 @@ export const FormBox = styled.div `
   color: #010101;
 
 
-`
+`;
 
 export const FormStyle = styled.form `
   position: relative;
@@ -23,18 +25,18 @@ export const FormStyle = styled.form `
   gap: 19px;
   text-align: center;
   
-`
+`;
 
 
 export const Title = styled.span `
     font-weight: bold;
     font-size: 1.6rem;
-`
+`;
 
 export const Subtitle = styled.span `
     font-size: 1rem;
     color: #666;
-`
+`;
 
 
 
@@ -46,7 +48,7 @@ export const FormContainer = styled.div `
     position: relative;
     width: 100%;
     
-`
+`;
 
 export const Input = styled.input `
     background: none;
@@ -58,7 +60,7 @@ export const Input = styled.input `
     border-bottom: 4px solid #f1f7fe ;
     font-size: .9rem;
     padding: 6px 15px
-`
+`;
 export const InputErros = styled.div `
     width: 100%;
     font-size: .8rem;
@@ -67,7 +69,7 @@ export const InputErros = styled.div `
     height: 0;
     bottom:35px;
     left: 50px;
-`
+`;
 
 export const FormSection = styled.div `
     padding: 16px;
@@ -87,7 +89,7 @@ export const FormSection = styled.div `
      }
     }
 
-`
+`;
 export const SignUpButton = styled.button `
     background-color: #0066ff;
     color: #fff;
@@ -103,7 +105,7 @@ export const SignUpButton = styled.button `
     &:hover {
         background-color: #005ce6;
     }
-`
+`;
 
 export const ProxPage = styled.button `
     background-color: transparent ;
@@ -112,12 +114,24 @@ export const ProxPage = styled.button `
     display: flex;
     width: 100%;
 
-`
+`;
 
 export const SendEmail = styled.span `
     background-color: #dbe9ff;
     padding: 0.3rem;
     border-radius: 5px 5px;
-    color: #0d0c0c
+    color: #0d0c0c;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    align-items: center;
+    gap: 10px;
+    animation: slideInLeft;
+    animation-duration: 1s;
 
-`
+`;
+
+export const IconSend = styled.span `
+    color: #323222;
+    display: flex;
+`;

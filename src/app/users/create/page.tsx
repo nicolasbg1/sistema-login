@@ -4,13 +4,14 @@
 import { createUser } from '@/components/data/schema';
 import { InputComponent } from '@/components/layout/form/Input';
 import { FormBox, FormContainer, FormSection, FormStyle, SignUpButton, Subtitle, Title } from '@/components/layout/form/Form';
-import {useFormik } from 'formik'
-import axios from 'axios'
+import {useFormik } from 'formik';
+import axios from 'axios';
 import Link from 'next/link';
 
 export default function newUser() {
 
     type InputDataProps = {
+        name: string,
         email: string,  
         password: string,
         confirmPassword: string
@@ -21,80 +22,89 @@ export default function newUser() {
     const handleSubmit = async (data: InputDataProps) => {
      
         try {
-          const { confirmPassword: _, ...dataSend } = data;
-          console.log('Dados a serem enviados:', dataSend);
-          const response = await axios.post('http://localhost:9000/users/auth', dataSend);
-          console.log(response)
-          formik.resetForm()
-        //   const myToken = response.data.token;
-        //   localStorage.setItem('token', myToken)
-        //   console.log(localStorage.getItem('token'))
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { confirmPassword: _, ...dataSend } = data;
+            console.log('Dados a serem enviados:', dataSend);
+            const response = await axios.post('http://localhost:9000/users/create', dataSend);
+            console.log(response);
+            alert('usuário criado com sucesso');
+            formik.resetForm();
        
 
         } catch (error) {
-          console.error('Erro ao enviar a solicitação:', error);
+            console.error('Erro ao enviar a solicitação:', error);
         }
-      };
+    };
 
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      confirmPassword: ''
-    },
-    validationSchema: createUser,
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        },
+        validationSchema: createUser,
     
-    onSubmit: handleSubmit,
+        onSubmit: handleSubmit,
     
 
 
-  })
+    });
 
-  return (
+    return (
 
-    <FormBox>
-      <FormStyle onSubmit={formik.handleSubmit}>
-        <Title>Nova Conta</Title>
-        <Subtitle>Crie um novo usuário para ter acesso ao conteúdo</Subtitle>
+        <FormBox>
+            <FormStyle onSubmit={formik.handleSubmit}>
+                <Title>Nova Conta</Title>
+                <Subtitle>Crie um novo usuário para ter acesso ao conteúdo</Subtitle>
 
-        <FormContainer>
+                <FormContainer>
 
-            <InputComponent 
-              name={'email'}
-              type={'email'}
-              placeholder={'digite seu email'}
-              value={formik.values.email}
-              error={formik.errors.email}
-              onChange={formik.handleChange}
-            />
+                    <InputComponent 
+                        name={'name'}
+                        type={'name'}
+                        placeholder={'digite seu name'}
+                        value={formik.values.name}
+                        error={formik.errors.name}
+                        onChange={formik.handleChange}
+                    />
 
-            <InputComponent 
-             name={'password'}
-             type={'password'}
-             placeholder={'Digite sua senha'}
-             value={formik.values.password}
-             error={formik.errors.password}
-             onChange={formik.handleChange}
-            />
+                    <InputComponent 
+                        name={'email'}
+                        type={'email'}
+                        placeholder={'digite seu email'}
+                        value={formik.values.email}
+                        error={formik.errors.email}
+                        onChange={formik.handleChange}
+                    />
 
-            <InputComponent 
-                  name={'confirmPassword'}
-                  type={'password'}
-                  placeholder={'confirme sua senha'}
-                  value={formik.values.confirmPassword}
-                  error={formik.errors.confirmPassword}
-                  onChange={formik.handleChange}
+                    <InputComponent 
+                        name={'password'}
+                        type={'password'}
+                        placeholder={'Digite sua senha'}
+                        value={formik.values.password}
+                        error={formik.errors.password}
+                        onChange={formik.handleChange}
+                    />
+
+                    <InputComponent 
+                        name={'confirmPassword'}
+                        type={'password'}
+                        placeholder={'confirme sua senha'}
+                        value={formik.values.confirmPassword}
+                        error={formik.errors.confirmPassword}
+                        onChange={formik.handleChange}
               
-            />
-            <SignUpButton type='submit'>Cadastrar</SignUpButton>
-        </FormContainer>
-      </FormStyle>
+                    />
+                    <SignUpButton type='submit'>Cadastrar</SignUpButton>
+                </FormContainer>
+            </FormStyle>
 
-    <FormSection>
-        <p>Tem uma conta ? <Link href={"/users/auth"}>Logue aqui</Link></p>
-    </FormSection>
-</FormBox>
+            <FormSection>
+                <p>Tem uma conta ? <Link href={'/users/auth'}>Logue aqui</Link></p>
+            </FormSection>
+        </FormBox>
    
-  )
+    );
 }
