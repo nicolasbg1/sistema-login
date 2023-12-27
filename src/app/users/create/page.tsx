@@ -7,6 +7,7 @@ import { FormBox, FormContainer, FormSection, FormStyle, SignUpButton, Subtitle,
 import {useFormik } from 'formik';
 import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function newUser() {
 
@@ -17,6 +18,16 @@ export default function newUser() {
         confirmPassword: string
     }
 
+    const {push} = useRouter();
+
+    const SubmitButton = () => {
+        if(!formik.errors){
+            push('/users/auth');
+        }
+        else{
+            alert('verifique seu cadastro');
+        }
+    };
 
 
     const handleSubmit = async (data: InputDataProps) => {
@@ -29,7 +40,7 @@ export default function newUser() {
             console.log(response);
             alert('usuário criado com sucesso');
             // formik.resetForm();
-            window.location.replace('http://localhost:3000/users/auth');
+            // window.location.replace('http://localhost:3000/users/auth');
        
 
         } catch (error) {
@@ -48,8 +59,6 @@ export default function newUser() {
         validationSchema: createUser,
     
         onSubmit: handleSubmit,
-    
-
 
     });
 
@@ -98,7 +107,7 @@ export default function newUser() {
                         onChange={formik.handleChange}
               
                     />
-                    <SignUpButton type='submit'>Cadastrar</SignUpButton>
+                    <SignUpButton type='submit' onClick={SubmitButton}>Cadastrar</SignUpButton>
                 </FormContainer>
             </FormStyle>
 

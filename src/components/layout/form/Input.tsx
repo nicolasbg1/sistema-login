@@ -17,16 +17,16 @@ export function InputComponent ({type, name, placeholder, error, value, onChange
     return (
         <div className="input-container">
             <Input 
-            type={type}
-            name={name}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
+                type={type}
+                name={name}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
             />
 
-        {error && (
-            <InputErros>{error}</InputErros>
-        )}
+            {error && (
+                <InputErros>{error}</InputErros>
+            )}
         </div>
     );
 

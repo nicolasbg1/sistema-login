@@ -19,7 +19,17 @@ export default function newUser() {
     }
 
 
+
     const {push} = useRouter();
+
+    const SubmitButton = () => {
+        if(!formik.errors){
+            push('/users/auth');
+        }
+        else{
+            alert('verifique suas informações');
+        }
+    };
 
     const handleSubmit = async (data: InputDataProps) => {
 
@@ -88,9 +98,7 @@ export default function newUser() {
                         error={formik.errors.password}
                         onChange={formik.handleChange}
                     />
-                    <SignUpButton type='submit' onClick={() => {
-                        push('http://localhost:3000/users/getprofile');
-                    }}>
+                    <SignUpButton type='submit' onClick={SubmitButton}>
                         Entrar
                     </SignUpButton>
                 </FormContainer>
