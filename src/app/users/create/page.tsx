@@ -28,7 +28,8 @@ export default function newUser() {
             const response = await axios.post('http://localhost:9000/users/create', dataSend);
             console.log(response);
             alert('usuário criado com sucesso');
-            formik.resetForm();
+            // formik.resetForm();
+            window.location.replace('http://localhost:3000/users/auth');
        
 
         } catch (error) {

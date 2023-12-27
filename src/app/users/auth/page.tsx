@@ -8,6 +8,7 @@ import {useFormik } from 'formik';
 import { FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 export default function newUser() {
@@ -18,18 +19,23 @@ export default function newUser() {
     }
 
 
+    const {push} = useRouter();
 
     const handleSubmit = async (data: InputDataProps) => {
+
+
         try {
             const response = await axios.post('http://localhost:9000/users/auth', data);
             console.log(response);
             const myToken = response.data.token;
+            axios.defaults.headers.Authorization = `Bearer ${myToken}`;
             localStorage.setItem('token', myToken);
+
             console.log(localStorage.getItem('token'));
 
-            
         }
-
+      
+        
         catch(error) {
             console.error('Erro ao enviar a solicitação:', error);
             alert('Erro');
@@ -82,7 +88,9 @@ export default function newUser() {
                         error={formik.errors.password}
                         onChange={formik.handleChange}
                     />
-                    <SignUpButton type='submit'>
+                    <SignUpButton type='submit' onClick={() => {
+                        push('http://localhost:3000/users/getprofile');
+                    }}>
                         Entrar
                     </SignUpButton>
                 </FormContainer>
