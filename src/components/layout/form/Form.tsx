@@ -118,12 +118,11 @@ export const ProxPage = styled.button `
 `;
 
 export const SendEmail = styled.span `
-    background-color: #5FB2FF;
+    /* background-color: #188e06; */
     padding: 0.3rem;
     border-radius: 5px 5px;
-    color: #0d0c0c;
     display: flex;
-    color: #fff;
+    color: #000000;
     justify-content: center;
     height: 30px;
     font-weight: 600;
