@@ -65,7 +65,7 @@ export default function newUser() {
                     <InputComponent 
                         name={'name'}
                         type={'name'}
-                        placeholder={'digite seu name'}
+                        placeholder={'Digite seu name'}
                         value={formik.values.name}
                         error={formik.errors.name}
                         onChange={formik.handleChange}
@@ -74,7 +74,7 @@ export default function newUser() {
                     <InputComponent 
                         name={'email'}
                         type={'email'}
-                        placeholder={'digite seu email'}
+                        placeholder={'Digite seu email'}
                         value={formik.values.email}
                         error={formik.errors.email}
                         onChange={formik.handleChange}
@@ -92,7 +92,7 @@ export default function newUser() {
                     <InputComponent 
                         name={'confirmPassword'}
                         type={'password'}
-                        placeholder={'confirme sua senha'}
+                        placeholder={'Confirme sua senha'}
                         value={formik.values.confirmPassword}
                         error={formik.errors.confirmPassword}
                         onChange={formik.handleChange}
