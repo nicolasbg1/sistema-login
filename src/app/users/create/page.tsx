@@ -8,8 +8,10 @@ import {useFormik } from 'formik';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
+import { useState } from 'react';
 export default function newUser() {
+
+    const [msg, setMsg] = useState('');
 
     type InputDataProps = {
         name: string,
@@ -20,14 +22,6 @@ export default function newUser() {
 
     const {push} = useRouter();
 
-    const SubmitButton = () => {
-        if(!formik.errors){
-            push('/users/auth');
-        }
-        else{
-            alert('verifique seu cadastro');
-        }
-    };
 
 
     const handleSubmit = async (data: InputDataProps) => {
@@ -35,16 +29,14 @@ export default function newUser() {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { confirmPassword: _, ...dataSend } = data;
-            console.log('Dados a serem enviados:', dataSend);
             const response = await axios.post('http://localhost:9000/users/create', dataSend);
-            console.log(response);
-            alert('usuário criado com sucesso');
-            // formik.resetForm();
-            // window.location.replace('http://localhost:3000/users/auth');
+            setMsg(response.statusText);
+            push('/users/auth');
        
 
         } catch (error) {
-            console.error('Erro ao enviar a solicitação:', error);
+            console.log(`Erro da vez : ${error}`);
+            formik.errors.email = 'O Email já está cadastrado';
         }
     };
 
@@ -67,8 +59,7 @@ export default function newUser() {
         <FormBox>
             <FormStyle onSubmit={formik.handleSubmit}>
                 <Title>Nova Conta</Title>
-                <Subtitle>Crie um novo usuário para ter acesso ao conteúdo</Subtitle>
-
+                <Subtitle>{msg ? msg : 'Crie um novo usuário para ter acesso ao conteúdo'}</Subtitle>
                 <FormContainer>
 
                     <InputComponent 
@@ -107,7 +98,7 @@ export default function newUser() {
                         onChange={formik.handleChange}
               
                     />
-                    <SignUpButton type='submit' onClick={SubmitButton}>Cadastrar</SignUpButton>
+                    <SignUpButton type='submit'>Cadastrar</SignUpButton>
                 </FormContainer>
             </FormStyle>
 

@@ -67,8 +67,9 @@ export const InputErros = styled.div `
     position: relative;
     color:red;
     height: 0;
-    bottom:35px;
-    left: 50px;
+    bottom:30px;
+    z-index: 100;
+    left: 95px;
 `;
 
 export const FormSection = styled.div `
@@ -117,13 +118,15 @@ export const ProxPage = styled.button `
 `;
 
 export const SendEmail = styled.span `
-    background-color: #dbe9ff;
+    background-color: #5FB2FF;
     padding: 0.3rem;
     border-radius: 5px 5px;
     color: #0d0c0c;
     display: flex;
+    color: #fff;
     justify-content: center;
     height: 30px;
+    font-weight: 600;
     align-items: center;
     gap: 10px;
     animation: slideInLeft;
@@ -132,6 +135,5 @@ export const SendEmail = styled.span `
 `;
 
 export const IconSend = styled.span `
-    color: #323222;
     display: flex;
 `;

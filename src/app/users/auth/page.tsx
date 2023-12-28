@@ -9,9 +9,12 @@ import { FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
 
 
 export default function newUser() {
+    const [msg, setMsg] = useState(' ');
 
     type InputDataProps = {
         email: string,  
@@ -22,14 +25,6 @@ export default function newUser() {
 
     const {push} = useRouter();
 
-    const SubmitButton = () => {
-        if(!formik.errors){
-            push('/users/auth');
-        }
-        else{
-            alert('verifique suas informações');
-        }
-    };
 
     const handleSubmit = async (data: InputDataProps) => {
 
@@ -40,15 +35,26 @@ export default function newUser() {
             const myToken = response.data.token;
             axios.defaults.headers.Authorization = `Bearer ${myToken}`;
             localStorage.setItem('token', myToken);
-
-            console.log(localStorage.getItem('token'));
+            console.log(response.statusText);
+            setMsg('Bem vindo');
+            push('/users/getprofile');
 
         }
       
         
         catch(error) {
             console.error('Erro ao enviar a solicitação:', error);
-            alert('Erro');
+            formik.errors.email = 'Email ou senha inválidos';
+            formik.errors.password = 'Email ou senha inválidos';
+
+            // tentiva de pegar as mensagens de erro direto do backend
+
+            // const axiosError = axios.AxiosError.prototype.message;
+            // console.log(axiosError);
+            // formik.errors.email = 'Senha ou email inválidos';
+            // formik.errors.password = 'Senha ou email inválidos';
+            
+            
         }
     };
      
@@ -77,7 +83,7 @@ export default function newUser() {
                     </Link>
                 </ProxPage>
                 <Title>Login</Title>
-                <Subtitle>Logue na sua conta para obter acesso ao conteúdo</Subtitle>
+                <Subtitle>{msg ? msg : 'Logue na sua conta para obter acesso ao conteúdo'}</Subtitle>
 
                 <FormContainer>
 
@@ -98,7 +104,7 @@ export default function newUser() {
                         error={formik.errors.password}
                         onChange={formik.handleChange}
                     />
-                    <SignUpButton type='submit' onClick={SubmitButton}>
+                    <SignUpButton type='submit'>
                         Entrar
                     </SignUpButton>
                 </FormContainer>

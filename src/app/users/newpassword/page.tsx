@@ -3,7 +3,7 @@
 
 import { UserExist } from '@/components/data/schema';
 import { InputComponent } from '@/components/layout/form/Input';
-import { FormBox, FormContainer, FormSection, FormStyle, ProxPage, SignUpButton, Subtitle, Title, SendEmail, IconSend } from '@/components/layout/form/Form';
+import { FormBox, FormContainer, FormStyle, ProxPage, SignUpButton, Subtitle, Title, SendEmail, IconSend } from '@/components/layout/form/Form';
 import {useFormik } from 'formik';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useState } from 'react';
@@ -72,9 +72,6 @@ export default function newUser() {
                 )}
             </FormStyle>
 
-            <FormSection>
-                <p> Esqueceu a senha ? <Link href={'/users/newpassword'}>clique aqui</Link></p>
-            </FormSection>
         </FormBox>
    
     );
