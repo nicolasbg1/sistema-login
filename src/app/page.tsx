@@ -4,10 +4,8 @@ import Link from 'next/link';
 export default function Home() {
     return (
         <main>
-            <h1>Minha aplicação começa aqui</h1>
-            <Link href={'/users/create'}>Clique aqui</Link>
             <button>
-    I N I C I A R
+                <Link href={'/users/create'}>I N I C I A R</Link>     
                 <div id="clip">
                     <div id="leftTop" className="corner"></div>
                     <div id="rightBottom" className="corner"></div>
