@@ -2,11 +2,11 @@
 
 
 import { UserExist } from '@/components/data/schema';
+import { FormBox, FormContainer, FormStyle, IconSend, ProxPage, SendEmail, SignUpButton, Subtitle, Title } from '@/components/layout/form/Form';
 import { InputComponent } from '@/components/layout/form/Input';
-import { FormBox, FormContainer, FormStyle, ProxPage, SignUpButton, Subtitle, Title, SendEmail, IconSend } from '@/components/layout/form/Form';
-import {useFormik } from 'formik';
-import { FaArrowLeft } from 'react-icons/fa';
+import { useFormik } from 'formik';
 import { useState } from 'react';
+import { FaArrowLeft } from 'react-icons/fa';
 import { IoSend } from 'react-icons/io5';
 // import axios from 'axios'
 import Link from 'next/link';
