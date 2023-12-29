@@ -1,20 +1,31 @@
-import Link from 'next/link';
+'use client';
 
+
+import {
+    Button,
+    Clip,
+    CornerPosition,
+    LeftArrow,
+    RightArrow
+} from '../components/layout/StartAplication';
+
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+    const {push} = useRouter();
     return (
         <main>
-            <button>
-                <Link href={'/users/create'}>I N I C I A R</Link>     
-                <div id="clip">
-                    <div id="leftTop" className="corner"></div>
-                    <div id="rightBottom" className="corner"></div>
-                    <div id="rightTop" className="corner"></div>
-                    <div id="leftBottom" className="corner"></div>
-                </div>
-                <span id="rightArrow" className="arrow"></span>
-                <span id="leftArrow" className="arrow"></span>
-            </button>
+            <Button onClick={() => push('/users/create')}>
+            I N I C I A R         
+                <Clip>
+                    <CornerPosition className="leftTop" />
+                    <CornerPosition className="rightBottom" />
+                    <CornerPosition className="rightTop" />
+                    <CornerPosition className="leftBottom" />
+                </Clip>
+                <RightArrow id="rightArrow" className="arrow"></RightArrow>
+                <LeftArrow id="leftArrow" className="arrow"></LeftArrow>
+            </Button>
 
         </main>
        

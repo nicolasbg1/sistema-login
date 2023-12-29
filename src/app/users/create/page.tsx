@@ -2,10 +2,11 @@
 
 
 import { createUser } from '@/components/data/schema';
+import { FormBox, FormContainer, FormSection, FormStyle, ProxPage, SignUpButton, Subtitle, Title } from '@/components/layout/form/Form';
 import { InputComponent } from '@/components/layout/form/Input';
-import { FormBox, FormContainer, FormSection, FormStyle, SignUpButton, Subtitle, Title } from '@/components/layout/form/Form';
-import {useFormik } from 'formik';
 import axios from 'axios';
+import { useFormik } from 'formik';
+import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -58,6 +59,11 @@ export default function newUser() {
 
         <FormBox>
             <FormStyle onSubmit={formik.handleSubmit}>
+                <ProxPage>
+                    <Link href={'/'}>
+                        <FaArrowLeft />
+                    </Link>
+                </ProxPage>
                 <Title>Nova Conta</Title>
                 <Subtitle>{msg ? msg : 'Crie um novo usuário para ter acesso ao conteúdo'}</Subtitle>
                 <FormContainer>
