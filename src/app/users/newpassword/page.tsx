@@ -1,14 +1,14 @@
 'use client';
 
 
-import { UserExist } from '@/components/data/schema';
+import { NewPass } from '@/components/data/schema';
 import { FormBox, FormContainer, FormStyle, IconSend, ProxPage, SendEmail, SignUpButton, Subtitle, Title } from '@/components/layout/form/Form';
 import { InputComponent } from '@/components/layout/form/Input';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { IoSend } from 'react-icons/io5';
-// import axios from 'axios'
+import axios from 'axios';
 import Link from 'next/link';
 
 export default function newUser() {
@@ -19,23 +19,32 @@ export default function newUser() {
         email: string,  
     }
 
-
-
     const handleSubmit = async (data: InputDataProps) => {
-        console.log(data);
+        try {
+            console.log('chamou');
+            const response = await axios.post('http://localhost:9000/users/newpassword', data);
+            console.log(response.statusText);
+            setClicked(!clicked);
+            console.log(response.data);
+        }
+
+        catch (error) {
+            console.error('Erro ao enviar a solicitação:', error);
+            formik.setErrors({
+                email: 'O Email não está cadastrado',
+            });
+        }
+
+
     };
-     
 
     const formik = useFormik({
         initialValues: {
             email: '',
         },
-        validationSchema: UserExist,
-    
+        validationSchema: NewPass,
+
         onSubmit: handleSubmit,
-    
-
-
     });
 
     return (
@@ -61,7 +70,7 @@ export default function newUser() {
                         error={formik.errors.email}
                         onChange={formik.handleChange}
                     />
-                    <SignUpButton type='submit' onClick={() => {setClicked(!clicked);}}>enviar email</SignUpButton>
+                    <SignUpButton type='submit'>enviar email</SignUpButton>
                 </FormContainer>
                 {clicked && !formik.errors.email && (
                     <SendEmail>email enviado

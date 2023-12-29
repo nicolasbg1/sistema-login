@@ -16,4 +16,7 @@ export const UserExist = Yup.object().shape({
     email: Yup.string().required('Campo obrigatório').email('Formato inválido'),
     password: Yup.string().required('Campo obrigatório')});
 
+export const NewPass = Yup.object().shape({
+    email: Yup.string().required('Campo obrigatório').email('Formato inválido'),
+});
     
